@@ -1,10 +1,10 @@
-const { create, getAllTaskUser, deleteTask } = require("../services/taskServices");
+const { create, getAllNoteUser, deleteNote } = require("../services/notesServices")
 
 module.exports = {
-    createTask: (req, res) => {
+    createNote: (req, res) => {
         const body = req.body;
         create(body, (err, result) => {
-            if(err) {
+            if (err) {
                 console.log(err);
                 return res.status(500).json({
                     success: 0,
@@ -13,14 +13,15 @@ module.exports = {
             }
             return res.status(201).json({
                 success: 1,
-                message: "Insert task success"
+                message: "Insert note success"
             });
         });
     },
 
-    getAllTaskUser: (req, res) => {
+
+    getAllNoteUser: (req, res) => {
         const id_user = req.params.id_user;
-        getAllTaskUser(id_user, (err, results) => {
+        getAllNoteUser(id_user, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
@@ -28,7 +29,7 @@ module.exports = {
             if (!results) {
                 return res.json({
                     success: 0,
-                    message: "Record not found" // Registro não encontrado
+                    message: "Record not found"
                 });
             }
 
@@ -39,9 +40,10 @@ module.exports = {
         });
     },
 
-    deleteTask: (req, res) => {
-        const { id_user, id_task } = req.params;
-        deleteTask({ id_user, id_task }, (err, results) => {
+
+    deleteNote: (req, res) => {
+        const { id_user, id_note } = req.params;
+        deleteNote({ id_user, id_note }, (err, results) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -50,18 +52,11 @@ module.exports = {
                     error: err.message
                 });
             }
-            if (results.success === 0) {
-                return res.status(404).json({
-                    success: 0,
-                    message: "No task found or couldn't be deleted"
-                });
-            }
 
             return res.status(200).json({
                 success: 1,
-                message: results.message 
+                message: results.message
             });
         });
     },
-    
 };

@@ -29,7 +29,6 @@ module.exports = {
         try {
             const { id_user, id_task } = data;
     
-            // Realiza a exclusão da tarefa
             const { data: deletedData, error } = await supabase
                 .from('tasks_users')
                 .delete()
