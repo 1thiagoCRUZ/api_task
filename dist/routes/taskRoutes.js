@@ -1,0 +1,1 @@
+const{Router:Router}=require("express"),{createTask:createTask,getAllTaskUser:getAllTaskUser,deleteTask:deleteTask}=require("../controllers/taskController"),router=require("express").Router();router.post("/v1/task",createTask),router.get("/v1/task/search/:id_user",getAllTaskUser),router.delete("/v1/task/remove/:id_user/:id_task",deleteTask),module.exports=router;

@@ -1,0 +1,1 @@
+const{Router:Router}=require("express"),{createNote:createNote,getAllNoteUser:getAllNoteUser,deleteNote:deleteNote}=require("../controllers/noteController"),router=require("express").Router();router.post("/v1/note",createNote),router.get("/v1/note/search/:id_user",getAllNoteUser),router.delete("/v1/note/remove/:id_user/:id_note",deleteNote),module.exports=router;

@@ -1,0 +1,1 @@
+const{createClient:createClient}=require("@supabase/supabase-js"),SUPABASE_URL=process.env.SUPABASE_URL,SUPABASE_KEY=process.env.SUPABASE_KEY,supabase=createClient(SUPABASE_URL,SUPABASE_KEY);module.exports=supabase;
