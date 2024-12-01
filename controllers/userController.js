@@ -66,7 +66,16 @@ module.exports = {
     },
 
     getAllUsers: (req, res) => {
-        getAllUsers((err, results) => {
+        const { id_user: current_user_id } = req.params;
+    
+        if (!current_user_id) {
+            return res.status(400).json({
+                success: 0,
+                message: "User ID is required",
+            });
+        }
+    
+        getAllUsers(current_user_id, (err, results) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -75,8 +84,9 @@ module.exports = {
                     error: err.message,
                 });
             }
-
+    
             return res.status(200).json(results);
         });
     },
+    
 };

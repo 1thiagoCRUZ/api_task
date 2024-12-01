@@ -40,23 +40,24 @@ module.exports = {
         }
     },
 
-    getAllUsers: async (callback) => {
+    getAllUsers: async (current_user_id, callback) => {
         try {
             const { data: users, error } = await supabase
                 .from("users")
-                .select("email, name, avatar_url, phone, institution, type");
-
+                .select("id, email, name, avatar_url, phone, institution, type")
+                .neq("id", current_user_id); // Exclui o usuário atual
+    
             if (error) {
                 throw error;
             }
-
+    
             if (!users || users.length === 0) {
                 return callback({
                     success: 0,
                     message: "No users found",
                 });
             }
-
+    
             return callback(null, {
                 success: 1,
                 data: users,
@@ -69,5 +70,6 @@ module.exports = {
                 error: err.message,
             });
         }
-    },
+    },    
+    
 };
