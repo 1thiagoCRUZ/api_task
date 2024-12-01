@@ -5,6 +5,8 @@ const app = express();
 
 const taskUsers = require("./routes/taskRoutes");
 const notesUsers = require("./routes/notesRoutes");
+const messageUsers = require("./routes/messageRoutes");
+const users = require("./routes/userRoutes");
 
 
 app.use(cors()); 
@@ -13,6 +15,8 @@ app.use(express.json());
 
 app.use("/", taskUsers);
 app.use("/", notesUsers);
+app.use("/", messageUsers);
+app.use("/", users);
 
 app.listen(process.env.APP_PORT, () => {
     console.log("Servidor rodando na porta:", process.env.APP_PORT);

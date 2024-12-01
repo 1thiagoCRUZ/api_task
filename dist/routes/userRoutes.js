@@ -1,0 +1,1 @@
+const router=require("express").Router(),{createUser:createUser,getAllUsers:getAllUsers}=require("../controllers/userController");router.get("/v1/users",getAllUsers),router.post("/v1/user",createUser),module.exports=router;
