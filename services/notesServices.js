@@ -2,7 +2,7 @@ const supabase = require("../config/database")
 
 module.exports = {
     create: async (data, callback) => {
-        const { title_note, description_note, user_id_note } = data;
+        const { title_note, description_note, user_id_note, color_note } = data;
 
         const { data: results, error } = await supabase
             .from('notes_users')
@@ -11,6 +11,7 @@ module.exports = {
                     title_note,
                     description_note,
                     user_id_note,
+                    color_note,
                 }
         ]);
     
@@ -60,7 +61,7 @@ module.exports = {
         try {
             const { data, error } = await supabase
                 .from('notes_users')
-                .select('id, title_note, description_note')
+                .select('id, title_note, description_note, color_note')
                 .eq('user_id_note', id_user)
             
             if (error) {
